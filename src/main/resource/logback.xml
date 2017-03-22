@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="false" scanPeriod="60 seconds" debug="false">
+
+	<property name="LOG_HOME" value="./logs" />
+
+	<!-- ch.qos.logback.core.ConsoleAppender 控制台输出 -->
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%date|%thread|%level|%msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="httpAppender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<!-- 正在记录的日志文件的路径及文件名 -->
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!--日志文件输出的文件名 -->
+			<fileNamePattern>${LOG_HOME}/spider-http_%d{yyyy-MM-dd}.log
+			</fileNamePattern>
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%date|%thread|%X{invokeNo}|%level|%logger{0}|%method|%msg%n
+			</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>DENY</onMatch>
+			<onMismatch>ACCEPT</onMismatch>
+		</filter>
+	</appender>
+
+	<appender name="httpErrorAppender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<!-- 正在记录的日志文件的路径及文件名 -->
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!--日志文件输出的文件名 -->
+			<fileNamePattern>${LOG_HOME}/spider-httpError_%d{yyyy-MM-dd}.log
+			</fileNamePattern>
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%date|%thread|%X{invokeNo}|%level|%logger{0}|%method|%msg%n
+			</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+
+	<appender name="bizzAppender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<!-- 正在记录的日志文件的路径及文件名 -->
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!--日志文件输出的文件名 -->
+			<fileNamePattern>${LOG_HOME}/spider-bizz_%d{yyyy-MM-dd}.log
+			</fileNamePattern>
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%date|%thread|%X{invokeNo}|%level|%logger{0}|%method|%msg%n
+			</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>DENY</onMatch>
+			<onMismatch>ACCEPT</onMismatch>
+		</filter>
+	</appender>
+
+	<appender name="bizzErrorAppender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<!-- 正在记录的日志文件的路径及文件名 -->
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!--日志文件输出的文件名 -->
+			<fileNamePattern>${LOG_HOME}/spider-bizzError_%d{yyyy-MM-dd}.log
+			</fileNamePattern>
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%date|%thread|%X{invokeNo}|%level|%logger{0}|%method|%msg%n
+			</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+
+	<appender name="otherAppender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<!-- 正在记录的日志文件的路径及文件名 -->
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!--日志文件输出的文件名 -->
+			<fileNamePattern>${LOG_HOME}/spider-other_%d{yyyy-MM-dd}.log
+			</fileNamePattern>
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%date|%thread|%X{invokeNo}|%level|%logger{0}|%method|%msg%n
+			</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>DENY</onMatch>
+			<onMismatch>ACCEPT</onMismatch>
+		</filter>
+	</appender>
+
+	<appender name="otherErrorAppender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<!-- 正在记录的日志文件的路径及文件名 -->
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!--日志文件输出的文件名 -->
+			<fileNamePattern>${LOG_HOME}/spider-otherError_%d{yyyy-MM-dd}.log
+			</fileNamePattern>
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%date|%thread|%X{invokeNo}|%level|%logger{0}|%method|%msg%n
+			</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+
+
+	<logger name="bizzLogger" level="ALL" additivity="false">
+		<appender-ref ref="bizzAppender" />
+		<appender-ref ref="console"></appender-ref>
+		<appender-ref ref="bizzErrorAppender" />
+	</logger>
+
+	<logger name="httpLogger" level="ALL" additivity="false">
+		<appender-ref ref="httpAppender" />
+		<appender-ref ref="httpErrorAppender" />
+	</logger>
+
+	<!-- 日志级别 -->
+	<root>
+		<level value="INFO" />
+		<appender-ref ref="otherAppender" />
+		<appender-ref ref="otherErrorAppender" />
+	</root>
+
+</configuration>
